@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% csrf_token %} 
+<div class="container">
+    <div class="row" style="padding-top: 50px;">
+        <div class="container-fluid">
+            <h2> Order Number #{{o.pk}} </h2>
+               <!-- Product Detail -->
+               <span>
+                <div class="col-md-12">
+                    <span class="posted_in"> 
+                        <strong> Food: </strong>{{o.food.name }}
+                    </span>
+                </div>
+            </span>
+             <!-- Product Detail -->
+             <span>
+                <div class="col-md-6">
+                    <span class="posted_in"> 
+                        <strong> Quantity: </strong> {{o.qty}}
+                    </span>
+                </div>
+            </span>
+             <!-- Product Detail -->
+             <span>
+                <div class="col-md-6">
+                    <span class="posted_in"> 
+                        <strong> Ordered at: </strong>{{o.ordered_at}}
+                    </span>
+                </div>
+            </span>
+             <!-- Product Detail -->
+             <span>
+                <div class="col-md-6">
+                    <span class="posted_in"> 
+                        <strong> Customer Name:  </strong>{{o.cust_order.name}}
+                    </span>
+                </div>
+            </span>
+                  <!-- Product Detail -->
+                  <span>
+                    <div class="col-md-6">
+                        <span class="posted_in"> 
+                            <strong> Address:  </strong>{{o.cust_order.address }}, {{o.cust_order.city }}
+                        </span>
+                    </div>
+                </span>
+             <!-- Product Detail -->
+             <span>
+                <div class="col-md-6">
+                    <span class="posted_in"> 
+                        <strong> Payment Mode: </strong> {{o.payment_mode}}
+                    </span>
+                </div>
+            </span>
+        </div>
+    </div>
+    <div>
+    <div class="row">
+        <div class="col-md-2">
+            <form action="">
+                <a href="{% url 'view_orders' %}" class="btn btn-secondary"> Back </a>
+            </form>
+        </div>
+        <div class="col-md-2">
+            <a href="{% url 'delete_order' pk=o.pk %}" class="btn btn-danger"> Delete </a>
+        </div>
+
+        <div class="col-md-2">
+            <a href="{% url 'update_details' pk=o.pk %}" class="btn btn-primary"> Update </a>
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock content %}

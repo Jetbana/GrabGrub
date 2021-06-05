@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="container-fluid" style="padding-top: 50px;">
+        <h2> Edit Order #{{o.pk}} </h2>
+            <form action="{% url 'update_details' pk=o.pk %}" method="POST">
+                {% csrf_token %}
+                <!-- Product Detail -->
+                <span>
+                    <div class="col-md-12">
+                        <span class="posted_in"> 
+                            {{o.food}}
+                        </span>
+                    </div>
+                </span>
+                <!-- Product Detail -->
+                <span>
+                    <div class="col-md-6">
+                        <span class="posted_in"> 
+                            {{o.ordered_at}}
+                        </span>
+                    </div>
+                </span>
+                <!-- Product Detail -->
+                <span>
+                    <div class="col-md-6">
+                        <span class="posted_in"> 
+                            {{o.cust_order}}
+                        </span>
+                    </div>
+                </span>
+                <!-- Update Quantity -->
+                <span>
+                    <div class="col-md-6">
+                        <label>
+                            Quantity
+                        </label>
+                        <input type="number" id="quantity" name="quantity" placeholder="{{o.qty}}" required></input>   
+                    </div>
+                </span>
+                <!-- Update Payment  -->
+                    <div class="col-md-6">
+                        <label> Payment Mode </label>
+                        <select name="payment" id="payment" required> 
+                            <option value="CASH"> Cash </option>
+                            <option value="CARD"> Card </option>
+                        </select>
+                    </div>
+                </span>
+                 </div>
+                <div class="row">
+                    <div class="col-md-3" style="background-color: white; padding-right:140px;" >
+                        <a href="{% url 'view_orders' %}" class="btn btn-secondary"> Back </a>
+                    </div>
+                <div class="col-md-3" style="background-color: white;">
+                    <button class="btn btn-primary" type="submit"> Update </button> 
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% endblock content %}

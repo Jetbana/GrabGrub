@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row" style="padding-top: 50px;">
+        <div class = "col-sm-3">
+          <img class= "d-inline-block align-top" src="{% static '/img/orders.png' %}" width="350" height="450" alt="">
+        </div>
+      <div class="col-lg-9">
+        <table class="table table-striped">
+          <thead style="white-space: nowrap; overflow: hidden; text-overflow:ellipsis;">
+                            <th scope="col"> Customer </th>
+                            <th scope="col"> Food </th>
+                            <th scope="col"> Ordered At</th>
+                            <th scope="col"> Details</th>
+                        </thead>
+                        <tbody>
+                            {% for o in orders %}
+                            <tr>
+                                <td>{{ o.cust_order.name }}</td>
+                                <td> {{o.food.name}}</td>
+                                <td>{{ o.ordered_at }}</td>
+                                <td> <a href="{% url 'view_details' pk=o.pk %}"><button type="submit" href="#" class="btn btn-maroon"> 
+                                    View Details 
+                                  </button></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+        </table>
+        <div class="d-flex">
+          <div class=" container">
+            <a href="{% url 'add_order' %}" ><button class="btn btn-yellowbtn"> Add Order </button></a>
+            <p> {% include 'messages.html' %}  </p>
+
+          </div>
+        </div>
+      </div>
+  </div>
+
+        {% endblock %}

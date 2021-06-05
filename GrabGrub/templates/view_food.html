@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+        <div class="container-fluid">
+          <div class="row" style="padding-top: 50px;">
+              <div class = "col-sm-3">
+                <img class= "d-inline-block align-top" src="{% static '/img/Fooditems.png' %}" width="350" height="500" alt="">
+              </div>
+              <div class="col-lg-9">
+                  <table class="table table-striped">
+                      <thead style="white-space: nowrap; overflow: hidden; text-overflow:ellipsis;">
+                          <th scope="col"> Name </th>
+                          <th scope="col"> Description </th>
+                          <th scope="col"> Price </th>
+                          <th scope="col"> Created At </th>
+                          <th scope="col"> Update</th>
+                          <th scope="col"> Delete </th>
+                      </thead>
+                      <tbody>
+                          {% for f in foods %}
+                          <tr>
+                              <td>{{ f.name }}</td>
+                              <td>{{ f.description }}</td>
+                              <td>{{ f.price }}</td>
+                              <td>{{ f.created_at }}</td>
+                              <td> <a href="{% url 'update_food' pk=f.pk %}" class="btn btn-primary"> 
+                                  Update
+                              </a>
+                              </td>
+                          
+                              <td> <a href="{% url 'delete_food' pk=f.pk %}"><button type="submit" class="btn btn-maroon"> 
+                                  Delete
+                                </button></a>
+                              </td>
+                          </tr>
+                          {% endfor %}
+                      </tbody>
+                  </table>
+                  <div class="d-flex">
+                    <div class="continer">
+                        <a href="{% url 'add_food' %}"><button class="btn btn-yellowbtn"> Add Food </button></a>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        
+ {% endblock %}

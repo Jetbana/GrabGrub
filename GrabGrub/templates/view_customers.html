@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+        {% block content %}
+
+        <div class="container-fluid">
+                <div class="row" style="padding-top: 50px;">
+                    <div class = "col-sm-3">
+                        <img class= "d-inline-block align-top" src="{% static '/img/Viewcustomers.png' %}" width="350" height="450" alt="">
+                    </div>
+                    <div class="col-lg-9">
+                        <table class="table table-striped">
+                            <thead style="white-space: nowrap; overflow: hidden; text-overflow:ellipsis;">
+                                <th scope="col"> Name </th>
+                                <th scope="col"> Address </th>
+                                <th scope="col"> City </th>
+                                <th scope="col"> Update</th>
+                                <th scope="col"> Delete </th>
+
+                            </thead>
+                            <tbody>
+                                {% for c in customers %}
+                                <tr>
+                                    <td>{{ c.name }}</td>
+                                    <td>{{ c.address }}</td>
+                                    <td>{{ c.city  }}</td>
+                                    <td> <a href="{% url 'update_customer' pk=c.pk %}"><button type="submit" href="#" class="btn btn-primary"> 
+                                        Update
+                                    </button></a>
+                                    </td>
+
+                                    <td> <a href="{% url 'delete_customer' pk=c.pk %}"><button type="submit" href="#" class="btn btn-maroon"> 
+                                        Delete
+                                    </button></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <div class="d-flex">
+                            <div class=" container">
+                                <p> {% include 'messages.html' %}  </p>
+
+                              <a href="{% url 'add_customer' %}" ><button class="btn btn-yellowbtn"> Add Customer </button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        {% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FFBD08 ;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <img src="{% static '/img/Navigationlogo.png' %}" width="170" height="70" class="d-inline-block align-top" alt="">
+      </div>
+{% endblock navbar %}
+
+
+{% block content %} 
+<div class="container-fluid">
+    <div class="row no-gutter">
+      <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image-login"></div>
+      <div class="col-md-8 col-lg-6">
+        <div class="login d-flex align-items-center py-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-9 col-lg-8 mx-auto">
+                <div>
+                  <img src="{% static '/img/grabgrub-secondary-logo.png' %}" width="200" height="100" class="d-inline-block align-top" alt="">
+                </div>
+                <h3 class="login-heading mb-4">Welcome back!</h3>
+                <form action="{% url 'login' %}" method="POST">
+                  {% csrf_token %}
+                  <div class="login100-form-title p-b-43">
+                    <p> {% include 'messages.html' %}  </p> 
+                  </div>
+                  <div class="form-label-group">
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+                    <label for="username">Username</label>
+                  </div>
+                  <div class="form-label-group">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                    <label for="password">Password</label>
+                  </div>
+                  <button class="btn btn-lg btn-maroon btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign in</button>
+                  <div class="text-center">
+                    <a class="a-green small" href="{% url 'signup' %}"> Don't have an account yet? Sign up here. </a></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
